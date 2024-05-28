@@ -25,14 +25,14 @@ import javax.inject.Inject
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
-//    @Inject
-//    lateinit var someDependency: SomeDependency
+    @Inject
+    lateinit var someDependency: SomeDependency
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
             MainScreen()
         }
-//        someDependency.doSomething("객체 생성 확인")
+        someDependency.doSomething("객체 생성 확인")
     }
 }
 
