@@ -6,15 +6,12 @@ plugins {
 }
 
 android {
-    namespace = "com.example.hiltmemoryanalyze"
+    namespace = "com.example.hilt"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.example.hiltmemoryanalyze"
         minSdk = 26
         targetSdk = 34
-        versionCode = 1
-        versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
