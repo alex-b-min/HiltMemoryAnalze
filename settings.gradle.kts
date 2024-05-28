@@ -16,5 +16,5 @@ dependencyResolutionManagement {
 rootProject.name = "HiltMemoryAnalyze"
 include(":app")
 include(":menual")
-include(":hilt")
+include(":hilt-singleton")
 //include(":ui")
