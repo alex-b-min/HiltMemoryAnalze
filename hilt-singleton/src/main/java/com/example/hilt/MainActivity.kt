@@ -29,13 +29,10 @@ class MainActivity : ComponentActivity() {
         lateinit var someDependency: SomeDependency
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        logMemoryUsage("@ Before Hilt Initialization")
         setContent {
             MainScreen()
         }
         someDependency.doSomething()
-
-        logMemoryUsage("@ After Hilt Initialization")
     }
 }
 
@@ -103,15 +100,15 @@ fun ThreeScreen(navController: NavController) {
     }
 }
 
-fun Context.logMemoryUsage(tag: String) {
-    val memoryInfo = ActivityManager.MemoryInfo()
-    val activityManager = getSystemService(Context.ACTIVITY_SERVICE) as ActivityManager
-    activityManager.getMemoryInfo(memoryInfo)
-
-    val usedMemory = memoryInfo.totalMem - memoryInfo.availMem
-
-    Log.d(
-        "$tag MemoryUsage",
-        "Used Memory: $usedMemory, Available Memory: ${memoryInfo.availMem}, Total Memory: ${memoryInfo.totalMem}"
-    )
-}
+//fun Context.logMemoryUsage(tag: String) {
+//    val memoryInfo = ActivityManager.MemoryInfo()
+//    val activityManager = getSystemService(Context.ACTIVITY_SERVICE) as ActivityManager
+//    activityManager.getMemoryInfo(memoryInfo)
+//
+//    val usedMemory = memoryInfo.totalMem - memoryInfo.availMem
+//
+//    Log.d(
+//        "$tag MemoryUsage",
+//        "Used Memory: $usedMemory, Available Memory: ${memoryInfo.availMem}, Total Memory: ${memoryInfo.totalMem}"
+//    )
+//}
