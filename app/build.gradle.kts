@@ -43,6 +43,19 @@ android {
     composeOptions {
         kotlinCompilerExtensionVersion = "1.5.3"
     }
+
+    flavorDimensions("implementation")
+
+    productFlavors {
+        create("hilt") {
+            dimension = "implementation"
+            applicationIdSuffix = ".hilt"
+        }
+        create("manual") {
+            dimension = "implementation"
+            applicationIdSuffix = ".manual"
+        }
+    }
 }
 
 dependencies {
