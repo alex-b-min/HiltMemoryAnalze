@@ -1,6 +1,7 @@
 package com.example.hilt
 
 import android.app.ActivityManager
+import android.content.ComponentCallbacks2
 import android.content.Context
 import android.os.Bundle
 import android.util.Log
@@ -16,6 +17,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.layout.SubcomposeLayout
 import androidx.navigation.NavController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -24,7 +26,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
 @AndroidEntryPoint
-class MainActivity : ComponentActivity() {
+class MainActivity : ComponentActivity(), ComponentCallbacks2 {
     @Inject
     lateinit var someDependency: SomeDependency
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -33,6 +35,18 @@ class MainActivity : ComponentActivity() {
             MainScreen()
         }
         someDependency.doSomething("객체 생성 확인")
+    }
+
+    override fun onTrimMemory(level: Int) {
+        if (level == TRIM_MEMORY_RUNNING_CRITICAL || level == TRIM_MEMORY_RUNNING_LOW
+            || level == TRIM_MEMORY_RUNNING_MODERATE || level == TRIM_MEMORY_COMPLETE
+        ) {
+            Log.d("onTrimMemory", "${level}")
+            finishAffinity()
+//            exitProcess(0)
+        } else {
+            super.onTrimMemory(level)
+        }
     }
 }
 
